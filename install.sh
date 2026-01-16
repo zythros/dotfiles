@@ -14,4 +14,13 @@ if [ -d "$SCRIPT_DIR/.config" ]; then
     echo "Copied .config files"
 fi
 
+# Rebuild chadwm if config was updated
+if [ -f "$HOME/.config/arco-chadwm/chadwm/config.def.h" ]; then
+    echo "Rebuilding chadwm..."
+    cd "$HOME/.config/arco-chadwm/chadwm"
+    rm -f config.h
+    sudo make clean install
+    echo "Chadwm rebuilt"
+fi
+
 echo "Done!"
